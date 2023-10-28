@@ -1,8 +1,51 @@
-﻿@{
+﻿<!--model EntGuild.Models.Product -->
+@model IEnumerable<EntGuild.Models.Product>
+<style>
+    body {
+        background-image: url('test_bg.JPG');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Entertainment Hub</h1>
+    <p> Welcome to Entertainment Hub where all your favourite movies, games and books are located.</p>
 </div>
+
+<h2> Hot Movies </h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <img src="test_bg.JPG" />
+                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+
+        </tr>
+    </thead>
+</table>
+
+
+<h2> Games </h2>
+<h2> Books </h2>
