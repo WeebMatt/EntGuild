@@ -5,11 +5,11 @@
 }
 
 <h1>Index</h1>
-
+<!-- Admin Only: Start -->
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
+<!-- Admin Only: End -->
 <form asp-controller="Products" asp-action="Index" method="get">
     <p>
         <select asp-for="ProductGenre" asp-items="Model.Genres">

@@ -19,5 +19,13 @@ namespace EntGuild.Data
         public DbSet<EntGuild.Models.Genre> Genre { get; set; } = default!;
 
         public DbSet<EntGuild.Models.Admin> Admin { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.SubGenre> SubGenre { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.Order> Order { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.Cart> Cart { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.User> User { get; set; } = default!;
     }
 }
