@@ -4,7 +4,10 @@ namespace EntGuild.Models
 {
     public class Product
     {
+        
         public int Id { get; set; }
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
         public string? Name { get; set; }
         public string? Author { get; set; }
         public string? Description { get; set; }

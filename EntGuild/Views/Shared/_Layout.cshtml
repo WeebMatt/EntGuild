@@ -25,6 +25,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="">Products</a>
+                        </li>
+                        <li class="nav-item" style="text-align: right">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="">Login</a>
+                        </li>
+                        <li class="nav-item" style="text-align: right">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex">
+                    <ul class="navbar-nav flex-grow-1">
+
                     </ul>
                 </div>
                 <form asp-controller="Products" asp-action="Index">
@@ -33,6 +47,7 @@
                         <input type="submit" value="Filter" />
                     </p>
                 </form>
+                
             </div>
         </nav>
     </header>

@@ -15,5 +15,9 @@ namespace EntGuild.Data
         }
 
         public DbSet<EntGuild.Models.Product> Product { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.Genre> Genre { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.Admin> Admin { get; set; } = default!;
     }
 }

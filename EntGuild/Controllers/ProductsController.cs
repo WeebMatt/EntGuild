@@ -21,22 +21,36 @@ namespace EntGuild.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(int productGenre, string searchString)
         {
             if (_context.Product == null)
             {
-                Problem("Entity set 'EntGuildContext.Product'  is null.");
+                return Problem("Entity set 'EntGuildContext.Product'  is null.");
             }
 
+            IQueryable<int> genreQuery = from p in _context.Product
+                                            orderby p.Genre
+                                            select p.Genre;
             var products = from p in _context.Product
                            select p;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                products = products.Where(p => p.Name!.Contains(searchString));
+                products = products.Where(s => s.Name!.Contains(searchString));
             }
 
-            return View(await products.ToListAsync());
+            if (productGenre != 0)
+            { 
+                products = products.Where(x => x.Genre == productGenre);
+            }
+
+            var productGenreVM = new ProductGenreViewModel
+            {
+                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Products = await products.ToListAsync()
+            };
+
+            return View(productGenreVM);
         }
 
         // GET: Products/Details/5
