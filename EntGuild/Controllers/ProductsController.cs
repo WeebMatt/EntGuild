@@ -29,24 +29,34 @@ namespace EntGuild.Controllers
             }
 
             IQueryable<int> genreQuery = from p in _context.Product
-                                            orderby p.Genre
-                                            select p.Genre;
+                                         orderby p.Genre
+                                         select p.Genre;
+
+            IQueryable<int> gamegenreQuery = from p in _context.Product
+                                         orderby p.subGenre
+                                         select p.subGenre;
             var products = from p in _context.Product
                            select p;
-
             if (!string.IsNullOrEmpty(searchString))
             {
                 products = products.Where(s => s.Name!.Contains(searchString));
             }
 
             if (productGenre != 0)
-            { 
+            {
                 products = products.Where(x => x.Genre == productGenre);
             }
 
+            var genreList = _context.Genre
+            .Select(l => new SelectListItem
+            {
+                Text = l.Name,
+                Value = l.genreID.ToString()
+            }).ToList();
+
             var productGenreVM = new ProductGenreViewModel
             {
-                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Genres = genreList,
                 Products = await products.ToListAsync()
             };
 
@@ -176,14 +186,14 @@ namespace EntGuild.Controllers
             {
                 _context.Product.Remove(product);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-          return (_context.Product?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Product?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

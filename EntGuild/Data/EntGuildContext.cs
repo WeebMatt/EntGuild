@@ -22,10 +22,14 @@ namespace EntGuild.Data
 
         public DbSet<EntGuild.Models.SubGenre> SubGenre { get; set; } = default!;
 
+        public DbSet<EntGuild.Models.Game_genre> Game_genre { get; set; } = default!;
+
         public DbSet<EntGuild.Models.Order> Order { get; set; } = default!;
 
-        public DbSet<EntGuild.Models.Cart> Cart { get; set; } = default!;
-
         public DbSet<EntGuild.Models.User> User { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.Book_genre> Book_genre { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.Movie_genre> Movie_genre { get; set; } = default!;
     }
 }
