@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EntGuild.Data;
 using EntGuild.Models;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.View;
 
 namespace EntGuild.Controllers
 {
@@ -20,11 +21,22 @@ namespace EntGuild.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Product != null ? 
-                          View(await _context.Product.ToListAsync()) :
-                          Problem("Entity set 'EntGuildContext.Product'  is null.");
+            if (_context.Product == null)
+            {
+                Problem("Entity set 'EntGuildContext.Product'  is null.");
+            }
+
+            var products = from p in _context.Product
+                           select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Name!.Contains(searchString));
+            }
+
+            return View(await products.ToListAsync());
         }
 
         // GET: Products/Details/5

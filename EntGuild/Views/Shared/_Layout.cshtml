@@ -27,6 +27,12 @@
                         </li>
                     </ul>
                 </div>
+                <form asp-controller="Products" asp-action="Index">
+                    <p>
+                        Search: <input type="text" name="SearchString" />
+                        <input type="submit" value="Filter" />
+                    </p>
+                </form>
             </div>
         </nav>
     </header>
