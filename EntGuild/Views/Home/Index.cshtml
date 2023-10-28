@@ -1,8 +1,64 @@
-﻿@{
+﻿@model EntGuild.Models.ProductGenreViewModel
+
+<style>
+
+    body {
+        background-image: url('test_bg.JPG');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    .card-container{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 200px;
+        margin: 20px;
+    }
+
+    .card-title {
+        font-weight: bold;
+    }
+
+</style>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="card-container">
+    <h2>Books Genre</h2>
+    @foreach (var product in Model.BooksProducts!)
+    {
+        <div class="card">
+            <h3>@product.Name</h3>
+            <p>@product.Author</p>
+        </div>
+    }
+</div>
+
+<div class="card-container">
+    <h2>Movies Genre</h2>
+    @foreach (var product in Model.MoviesProducts!)
+    {
+        <div class="card">
+            <h3>@product.Name</h3>
+            <p>@product.Author</p>
+        </div>
+    }
+</div>
+
+<div class="card-container">
+    <h2>Games Genre</h2>
+    @foreach (var product in Model.GamesProducts!)
+    {
+        <div class="card">
+            <h3>@product.Name</h3>
+            <p>@product.Author</p>
+        </div>
+    }
 </div>
