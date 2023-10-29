@@ -18,6 +18,18 @@
     .card {
         width: 200px;
         margin: 20px;
+        min-height: 200px;
+        padding: 10px;
+        color: black;
+    }
+
+    a   {
+        text-decoration: none;
+    }
+
+    .card:hover {
+        transform: scale(1.2);
+        transition: all 0.1s;
     }
 
     .card-title {
@@ -29,36 +41,45 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+<h2>Books Genre</h2>
 <div class="card-container">
-    <h2>Books Genre</h2>
+    
     @foreach (var product in Model.BooksProducts!)
     {
+        <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id">
         <div class="card">
             <h3>@product.Name</h3>
+            <hr/>
             <p>@product.Author</p>
         </div>
+        </a>
     }
 </div>
 
+<h2>Movies Genre</h2>
 <div class="card-container">
-    <h2>Movies Genre</h2>
     @foreach (var product in Model.MoviesProducts!)
     {
+        <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id">
         <div class="card">
             <h3>@product.Name</h3>
+            <hr />
             <p>@product.Author</p>
         </div>
+        </a>
     }
 </div>
 
+<h2>Games Genre</h2>
 <div class="card-container">
-    <h2>Games Genre</h2>
     @foreach (var product in Model.GamesProducts!)
     {
+        <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id">
         <div class="card">
             <h3>@product.Name</h3>
+            <hr />
             <p>@product.Author</p>
         </div>
+        </a>
     }
 </div>
