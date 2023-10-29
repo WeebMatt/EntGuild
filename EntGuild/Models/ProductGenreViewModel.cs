@@ -13,6 +13,9 @@ namespace EntGuild.Models
         public List<SelectListItem>? BookGenres { get; set; }
         public int? BookGenre { get; set; }
         public int? ProductGenre { get; set; }
+        public List<Product>? BooksProducts { get; set; }
+        public List<Product>? MoviesProducts { get; set; }
+        public List<Product>? GamesProducts { get; set; }
         public string? SearchString { get; set; }
 
     }
