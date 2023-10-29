@@ -30,10 +30,10 @@
                         </li>
                         <!-- Not logged in: Start -->
                         <li class="nav-item" style="text-align: right">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="">Login</a>
+                            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
                         </li>
-                        <li class="nav-item" style="text-align: right">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="">Register</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
                         </li>
                         <!-- Not logged in: End -->
                         <!-- Logged in: Start -->

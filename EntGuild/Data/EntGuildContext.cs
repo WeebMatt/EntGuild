@@ -34,5 +34,9 @@ namespace EntGuild.Data
         public DbSet<EntGuild.Models.Book_genre> Book_genre { get; set; } = default!;
 
         public DbSet<EntGuild.Models.Movie_genre> Movie_genre { get; set; } = default!;
+
+        public DbSet<EntGuild.Models.ShoppingCart> ShoppingCarts { get; set; };
+        public DbSet<EntGuild.Models.CartDetail> CartDetails { get; set; };
+        public DbSet
     }
 }
