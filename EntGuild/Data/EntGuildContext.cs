@@ -19,9 +19,6 @@ namespace EntGuild.Data
         public DbSet<EntGuild.Models.Genre> Genre { get; set; } = default!;
 
         public DbSet<EntGuild.Models.Admin> Admin { get; set; } = default!;
-        public DbSet<EntGuild.Models.Product> BooksPage { get; set; } = default!;
-        public DbSet<EntGuild.Models.Product> MoviesPage { get; set; } = default!;
-        public DbSet<EntGuild.Models.Product> GamesPage { get; set; } = default!;
 
         public DbSet<EntGuild.Models.SubGenre> SubGenre { get; set; } = default!;
 
