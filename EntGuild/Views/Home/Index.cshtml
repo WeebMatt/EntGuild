@@ -2,12 +2,6 @@
 
 <style>
 
-    body {
-        background-image: url('test_bg.JPG');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    }
 
     .card-container {
         display: flex;
@@ -36,6 +30,19 @@
         font-weight: bold;
     }
 
+    .image-arrow {
+        width: 96px;
+        height: 96px;
+        padding-top: 55px;
+        box-sizing: border-box;
+        object-position: 0px 0px;
+    }
+    .button_arrow {
+        width: 96px;
+        height:200px;
+        background: transparent;
+        border: none !important;
+    }
 </style>
 
 @{
@@ -54,8 +61,13 @@
         </div>
         </a>
     }
+    <button type="submit" name="Arrow_books" value="Accept" formaction=@Url.Action("index()") formmethod="post" class="button_arrow">
+        <img src="/images/arrow.png" class="" width="96" height="96" />
+        </button>
+   <!-- <button name="Arrow_books" onclick="location.href='Url.Action("ActionName", "GetShuffledCardsForGenre(1, 4")'" class="button_arrow">
+        <img src="/images/arrow.png" class="" width="96" height="96"/>
+    </button> -->
 </div>
-
 <h2>Movies Genre</h2>
 <div class="card-container">
     @foreach (var product in Model.MoviesProducts!)
@@ -68,6 +80,9 @@
         </div>
         </a>
     }
+    <button name="Arrow_books" value="ActionOne" class="button_arrow">
+        <img src="/images/arrow.png" class="" width="96" height="96" />
+    </button>
 </div>
 
 <h2>Games Genre</h2>
@@ -82,4 +97,7 @@
         </div>
         </a>
     }
+    <button name="Arrow_books" value="ActionOne" class="button_arrow">
+        <img src="/images/arrow.png" class="" width="96" height="96" />
+    </button>
 </div>
