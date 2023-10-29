@@ -21,7 +21,7 @@ namespace EntGuild.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(int productGenre, string searchString)
+        public async Task<IActionResult> Index(int productGenre, string searchString, int gameGenre, int movieGenre, int bookGenre)
         {
             if (_context.Product == null)
             {
@@ -35,6 +35,14 @@ namespace EntGuild.Controllers
             IQueryable<int> gamegenreQuery = from p in _context.Product
                                          orderby p.subGenre
                                          select p.subGenre;
+
+            IQueryable<int> moviegenreQuery = from p in _context.Product
+                                             orderby p.subGenre
+                                             select p.subGenre;
+
+            IQueryable<int> bookgenreQuery = from p in _context.Product
+                                             orderby p.subGenre
+                                             select p.subGenre;
             var products = from p in _context.Product
                            select p;
             if (!string.IsNullOrEmpty(searchString))
@@ -45,7 +53,20 @@ namespace EntGuild.Controllers
             if (productGenre != 0)
             {
                 products = products.Where(x => x.Genre == productGenre);
+                if (gameGenre != 0)
+                {
+                    products = products.Where(y => y.subGenre == gameGenre);
+                }
+                if (movieGenre != 0)
+                {
+                    products = products.Where(z => z.subGenre == movieGenre);
+                }
+                if (bookGenre != 0)
+                {
+                    products = products.Where(a =>  a.subGenre == bookGenre);
+                }
             }
+
 
             var genreList = _context.Genre
             .Select(l => new SelectListItem
@@ -53,10 +74,31 @@ namespace EntGuild.Controllers
                 Text = l.Name,
                 Value = l.genreID.ToString()
             }).ToList();
+            var gameGenreList = _context.Game_genre
+            .Select(l => new SelectListItem
+            {
+                Text = l.Name,
+                Value = l.subGenreID.ToString()
+            }).ToList();
+            var movieGenreList = _context.Movie_genre
+            .Select(l => new SelectListItem
+            {
+                Text = l.Name,
+                Value = l.subGenreID.ToString()
+            }).ToList();
+                        var bookGenreList = _context.Book_genre
+            .Select(l => new SelectListItem
+            {
+                Text = l.Name,
+                Value = l.subGenreID.ToString()
+            }).ToList();
 
             var productGenreVM = new ProductGenreViewModel
             {
                 Genres = genreList,
+                GameGenres = gameGenreList,
+                BookGenres = bookGenreList,
+                MovieGenres = movieGenreList,
                 Products = await products.ToListAsync()
             };
 

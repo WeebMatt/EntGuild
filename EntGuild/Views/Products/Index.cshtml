@@ -3,7 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
 <!---->
 
 
@@ -15,38 +19,21 @@
 <!-- Admin Only: End -->
 <form asp-controller="Products" asp-action="Index" method="get">
     <p>
-        <select asp-for="ProductGenre" id="choice1" asp-items="Model.Genres">
-            <option value="">All</option>
+        Type:
+        <select asp-for="ProductGenre" id="genre" asp-items="Model.Genres">
+            <option value=""></option>
         </select>
-        <select asp-for="ProductGenre" id="choice2">
-            <option data-option="1" value="M">
-                Manga
-            </option>
-            <option data-option="1" value="M">
-                Light Novel
-            </option>
-            <option data-option="1" value="M">
-                Manhwa
-            </option>
-            <option data-option="2" value="M">
-                RPG
-            </option>
-            <option data-option="2" value="M">
-                JRPG
-            </option>
-            <option data-option="2" value="M">
-                Fish Sim
-            </option>
-            <option data-option="3" value="M">
-                Romance
-            </option>
-            <option data-option="3" value="M">
-                Action
-            </option>
-            <option data-option="3" value="M">
-                Adventure
-            </option>
+        <p class="hidden" id="genretext">Genre:
+        <select class="hidden" id="movie" asp-for="MovieGenre" asp-items="Model.MovieGenres">
+            <option value=""></option>
         </select>
+        <select class="hidden" id="book" asp-for="BookGenre" asp-items="Model.BookGenres">
+            <option value=""></option>
+        </select>
+        <select class="hidden" id="game" asp-for="GameGenre" asp-items="Model.GameGenres">
+            <option value=""></option>
+        </select>
+        </p>
         Title: <input type="text" name="SearchString" />
         <input type="submit" value="Search" />
     </p>
@@ -123,16 +110,35 @@
 </table>
 @section scripts    {
 <script type="text/javascript" language="javascript">
-    $("#choice1").change(function () {
-        if (typeof $(this).data('options') === "undefined") {
-            /*Taking an array of all options-2 and kind of embedding it on the select1*/
-            $(this).data('options', $('#choice2 option').clone());
-        }
-        var id = $(this).val();
-        var options = $(this).data('options').filter('[data-option=' + id + ']');
-        $('#choice2').html(options);
-        $('#choice2').selectpicker('refresh');
-    });
+        document.getElementById("genre").onchange = function () {
+            document.getElementById("genretext").className = "show";
+            if (this[this.selectedIndex].value === "1") {
+                document.getElementById("book").className = "show";
+                document.getElementById("movie").value = "";
+                document.getElementById("game").value = "";
+            } else {
+                document.getElementById("book").className = "hidden";
+            } if (this[this.selectedIndex].value === "2") {
+                document.getElementById("movie").className = "show";
+                document.getElementById("book").value = "";
+                document.getElementById("game").value = "";
+            } else {
+                document.getElementById("movie").className = "hidden";
+            } if (this[this.selectedIndex].value === "3")  {
+                document.getElementById("game").className = "show";
+                document.getElementById("book").value = "";
+                document.getElementById("movie").value = "";
+            } else {
+                document.getElementById("game").className = "hidden";
+            }
+        };
+
+        $(document).ready(function ()   {
+            document.getElementById("genre").value = "";
+            document.getElementById("book").value = "";
+            document.getElementById("movie").value = "";
+            document.getElementById("game").value = "";
+        });
 </script>
 }
 
