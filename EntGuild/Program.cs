@@ -9,13 +9,15 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddDbContext<EntGuildContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("EntGuildContext") ?? throw new InvalidOperationException("Connection string 'EntGuildContext' not found.")));
-
+        builder.Services.AddDbContext<ApplicationDbContextConnection>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContextConnection")));
 
 
 
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<EntGuildContext>();
+
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
@@ -50,8 +52,8 @@ public class Program
 
             foreach (var role in Roles)
             {
-                if (!await roleMgr.RoleExistsAsync(role)
-                    //await roleMgr.CreateAsync(new IdentityRole(role));
+                if (!await roleMgr.RoleExistsAsync(role))
+                    await roleMgr.CreateAsync(new IdentityRole(role));
 
             }
         }
