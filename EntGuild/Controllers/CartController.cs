@@ -1,18 +1,50 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EntGuild.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MyApplication.Data;
 
 namespace EntGuild.Controllers
 {
     public class CartController : Controller
     {
-        public IActionResult Index()
+        private EntGuildContext context;
+
+        public CartController(EntGuildContext ctx) => context = ctx;
+
+        [HttpGet]
+        public ViewResult Index()
         {
-            return View();
+            var session = new CartSession(HttpContext.Session);
+            var model = new CartViewModel
+            {
+                CartItems = session.GetCartItems()
+            };
+
+            return View(model);
         }
 
-        public IActionResult Add(string id)
+        public ActionResult Add(Product product)
         {
-            ViewBag.ProductSlug = id;
-            return View();
+            product = context.Products
+                .Where(t => t.Id == product.Id)
+                .FirstOrDefault() ?? new Product();
+
+            var session = new CartSession(HttpContext.Session);
+            var cart = session.GetCartItems();
+            cart.Add(product);
+            session.SetCart(cart);
+
+            TempData["message"] = $"{product.Name} added to cart.";
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public RedirectToActionResult Delete()
+        {
+            var session = new CartSession(HttpContext.Session);
+            session.RemoveCartItem();
+            TempData["message"] = "Cart cleared.";
+            return RedirectToAction("Index", "Home");
         }
     }
 }

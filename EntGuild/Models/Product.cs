@@ -18,7 +18,5 @@ namespace EntGuild.Models
         public string? LastUpdatedBy { get; set; }
         [DataType(DataType.Date)]
         public DateTime LastUpdated { get; set; }
-        public List<OrderDetail> OrderDetail { get; set; }
-        public List<CartDetail> CartDetail { get; set; }
     }
 }

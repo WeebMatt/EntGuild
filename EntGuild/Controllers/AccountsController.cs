@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using EntGuild.Data;
+
 using EntGuild.Models;
 
 // Being worked on by Myles Hobson - c3379678

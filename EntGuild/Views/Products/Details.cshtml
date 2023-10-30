@@ -9,7 +9,18 @@
 <div>
     <h4>Product</h4>
     <!-- Customer Only: Start -->
-    <h4 style="text-align:right"><a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Slug"href='javascript:history.go(-1)'>Add to Cart</a></h4>
+    <h4 style="text-align:right">
+        <form asp-action="Add" asp-controller="Cart" method="post">
+            <a asp-action="Index" class="btn btn-primary">
+                Return to Home Page</a>
+            <button type="submit" class="btn btn-primary">
+                Add to Cart
+            </button>
+            <input type="hidden" asp-for="Id" />
+        </form>
+
+
+    </h4>
     <!-- Customer Only: End -->
     <hr />
     <dl class="row">
@@ -66,6 +77,6 @@
 <!-- Admin Only: Start -->
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Delete" asp-route-id="@Model?>Id">Delete</a>
 </div>
 <!-- Admin Only: End -->

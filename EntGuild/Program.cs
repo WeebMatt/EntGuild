@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using EntGuild.Data;
+
 using Microsoft.AspNetCore.Identity;
 using MyApplication.Data;
+using EntGuild.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EntGuildContext>(options =>
@@ -15,7 +16,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 // Add services to the container.
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "EntGuild.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+}
+);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
