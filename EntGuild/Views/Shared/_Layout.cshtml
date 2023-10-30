@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Entertainment Guild</title>
+    <title>@ViewData["Title"] - Entertainment Hub</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EntGuild.styles.css" asp-append-version="true" />
@@ -26,11 +26,11 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="">Products</a>
                         </li>
                         <!-- Not logged in: Start -->
-                        <li class="nav-item" style="text-align: right">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="">Login</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
                         </li>
                         <li class="nav-item" style="text-align: right">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="">Register</a>
+                            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
                         </li>
                         <!-- Not logged in: End -->
                         <!-- Logged in: Start -->

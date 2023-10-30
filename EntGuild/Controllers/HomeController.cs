@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using EntGuild.Data;
+using MyApplication.Data;
 
 
 namespace EntGuild.Controllers
