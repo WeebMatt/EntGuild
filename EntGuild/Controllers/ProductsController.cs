@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EntGuild.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly EntGuildContext _context;

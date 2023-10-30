@@ -69,21 +69,51 @@ public class Program
         {
             var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-            string email = "administrator@example.com";
-            string password = "Pa$$w0rd";
+            string emailAdmin = "administrator@example.com";
+            string passwordAdmin = "Pa$$w0rd";
+
+            if (await userMgr.FindByEmailAsync(emailAdmin) == null)
+            {
+                var user = new IdentityUser();
+                user.UserName = emailAdmin;
+                user.Email = passwordAdmin;
+
+                await userMgr.CreateAsync(user, passwordAdmin);
+
+                await userMgr.AddToRoleAsync(user, "Admin");
+
+            }
+
+            string email = "customer@example.com";
+            string password = "P@ssword1";
 
             if (await userMgr.FindByEmailAsync(email) == null)
             {
                 var user = new IdentityUser();
                 user.UserName = email;
-                user.Email = email;
+                user.Email = password;
 
                 await userMgr.CreateAsync(user, password);
 
-                await userMgr.AddToRoleAsync(user, "Admin");
-
+                await userMgr.AddToRoleAsync(user, "Customers");
 
             }
+
+            string emailEmployee = "employee@example.com";
+            string passwordEmployee = "Passw0rd!";
+
+            if (await userMgr.FindByEmailAsync(emailEmployee) == null)
+            {
+                var user = new IdentityUser();
+                user.UserName = emailEmployee;
+                user.Email = passwordEmployee;
+
+                await userMgr.CreateAsync(user, passwordEmployee);
+
+                await userMgr.AddToRoleAsync(user, "Employees");
+
+            }
+
 
         }
 
