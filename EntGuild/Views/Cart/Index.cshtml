@@ -1,0 +1,38 @@
+﻿@model CartViewModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<div class="text-center mb-4">
+    <h2>Cart</h2>
+    <form asp-action="Delete" method="post">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary">
+            Back to Home Page
+        </a>
+        <button type="submit" class="btn btn-primary">
+            Clear Cart
+        </button>
+        <a asp-action="PlaceOrder" asp-controller="Order" class="btn btn-primary">
+            Checkout
+        </a>
+    </form>
+</div>
+
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <ul class="list-group">
+            @foreach (Product product in Model.CartItems)
+            {
+                <li class="list-group-item background">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            @product.Name
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+
+    </div>
+</div>

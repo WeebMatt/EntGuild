@@ -4,6 +4,25 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+        <style>
+        nav
+        {
+            background-color: rgb(57, 160, 237)
+        }
+        body
+        {
+            background-color: rgb(76, 96, 133);
+            color: rgb(50, 50, 44)
+        }
+        .background
+        {
+            background-color: rgb(50, 50, 44);
+            color: rgb(70, 190, 230);
+            border-radius: 5px;
+            padding: 20px;
+        }
+    </style>
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -68,12 +87,12 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="">View Cart</a>
+                                <a class="nav-link text-dark" asp-area="Index" asp-controller="Cart" asp-action="">View Cart</a>
                         </li>
                         }
                         <!-- Logged in: End -->
                     </ul>
-                </div>
+                </div>1
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav flex-grow-1">
 

@@ -19,6 +19,14 @@ public class Program
 
         builder.Services.AddRazorPages();
 
+        builder.Services.AddDistributedMemoryCache();
+        builder.Services.AddSession(options =>
+        {
+            options.Cookie.Name = "EntGuild.Session";
+            options.IdleTimeout = TimeSpan.FromMinutes(5);
+        }
+        );
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -34,6 +42,8 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
+
+        app.UseSession();
 
         app.UseAuthorization();
 

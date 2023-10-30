@@ -114,8 +114,7 @@ namespace EntGuild.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var product = await _context.Product.FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
                 return NotFound();

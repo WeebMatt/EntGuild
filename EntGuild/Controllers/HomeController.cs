@@ -21,7 +21,7 @@ namespace EntGuild.Controllers
 
         public IActionResult Index()
         {
-            var productGenreVM = new ProductGenreViewModel();
+            var productGenreVM = new CartViewModel();
 
             productGenreVM.BooksProducts = GetShuffledCardsForGenre(1, 4);
             productGenreVM.MoviesProducts = GetShuffledCardsForGenre(2, 4);

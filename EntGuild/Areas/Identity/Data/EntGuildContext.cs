@@ -1,3 +1,4 @@
+using EntGuild.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ public class EntGuildContext : IdentityDbContext<IdentityUser>
     {
     }
 
+    public DbSet<Product> Products { get; set; }
     public DbSet<EntGuild.Models.Product> Product { get; set; } = default!;
 
     public DbSet<EntGuild.Models.Genre> Genre { get; set; } = default!;
@@ -20,9 +22,6 @@ public class EntGuildContext : IdentityDbContext<IdentityUser>
     public DbSet<EntGuild.Models.SubGenre> SubGenre { get; set; } = default!;
 
     public DbSet<EntGuild.Models.Game_genre> Game_genre { get; set; } = default!;
-
-    public DbSet<EntGuild.Models.Order> Order { get; set; } = default!;
-
     public DbSet<EntGuild.Models.User> User { get; set; } = default!;
 
     public DbSet<EntGuild.Models.Book_genre> Book_genre { get; set; } = default!;
